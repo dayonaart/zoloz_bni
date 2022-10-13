@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
       "https://sg-production-cdn.zoloz.com/page/zoloz-face-fe/index.html";
   String get _zoloUrl =>
       "$_baseUrl?clientcfg=${Uri.encodeComponent(_clientCfg)}";
+
   String get _html => """
 <!DOCTYPE html>
 <html lang="en">
@@ -65,6 +66,7 @@ class MyApp extends StatelessWidget {
         if (isAppReady) {
             window.flutter_inappwebview.callHandler('cancelbuttonState', 1, true, ['msg', 'CancelbuttonClicked'], { test: 'Go-Back' }).then(function (result) {
              window.location.href = "$_zoloUrl";
+             console.log("opening zoloz");
             });
         }
     }
