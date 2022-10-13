@@ -75,7 +75,7 @@ window.location.href = zolozurl;
             onPressed: () async {
               var metaInfo = await ZolozkitForFlutter.metaInfo;
               print("metaaaa=> $metaInfo");
-              await ZolozkitForFlutter.start(_clientCfg, {
+              await ZolozkitForFlutter.start("_clientCfg", {
                 // "nik": "1323233222222234",
                 // "channel": "EFORM",
                 // "bizId": "20221013104354711403",
