@@ -20,31 +20,15 @@ class MyChromeSafariBrowser extends ChromeSafariBrowser {
   }
 }
 
-class ChromeBrowser extends StatefulWidget {
+class ChromeBrowser extends StatelessWidget {
   final ChromeSafariBrowser browser = MyChromeSafariBrowser();
   String? url;
   ChromeBrowser(this.url, {super.key});
   @override
-  _ChromeBrowserState createState() => _ChromeBrowserState();
-}
-
-class _ChromeBrowserState extends State<ChromeBrowser> {
-  @override
-  void initState() {
-    // widget.browser.addMenuItem(ChromeSafariBrowserMenuItem(
-    //     id: 1,
-    //     label: 'Custom item menu 1',
-    //     action: (url, title) {
-    //       print('Custom item menu 1 clicked!');
-    //     }));
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('ChromeSafariBrowser Example'),
+        title: const Text('Example'),
       ),
       body: _inAppWeb(),
     );
@@ -57,13 +41,8 @@ class _ChromeBrowserState extends State<ChromeBrowser> {
             resources: resources,
             action: PermissionRequestResponseAction.GRANT);
       },
-      initialFile: 'assets/index.html',
-      // initialUrlRequest: URLRequest(
-      //   url: Uri.parse(Uri.dataFromString(
-      //           '<html><body>hello world</body></html>',
-      //           mimeType: 'text/html')
-      //       .toString()),
-      // ),
+      initialData: InAppWebViewInitialData(data: url!),
+      // initialFile: 'assets/index.html',
     );
   }
 
@@ -72,7 +51,7 @@ class _ChromeBrowserState extends State<ChromeBrowser> {
       child: ElevatedButton(
           onPressed: () async {
             try {
-              await widget.browser.open(
+              await browser.open(
                   url: Uri.parse("https://id.webcamtests.com/"),
                   options: ChromeSafariBrowserClassOptions(
                       android: AndroidChromeCustomTabsOptions(
