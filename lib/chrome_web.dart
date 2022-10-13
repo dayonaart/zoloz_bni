@@ -36,6 +36,9 @@ class ChromeBrowser extends StatelessWidget {
 
   InAppWebView _inAppWeb() {
     return InAppWebView(
+      onConsoleMessage: (controller, consoleMessage) {
+        print("CONSOLE MESSAGE ${consoleMessage.message}");
+      },
       androidOnPermissionRequest: (controller, origin, resources) async {
         return PermissionRequestResponse(
             resources: resources,
